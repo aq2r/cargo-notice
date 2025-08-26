@@ -8,6 +8,9 @@ use clap::{Parser, Subcommand};
 
 #[derive(Debug, Parser)]
 struct Args {
+    #[clap(hide = true, num_args = 1, required = true)]
+    cargo_cmd: String,
+
     #[clap(subcommand)]
     subcommand: SubCommands,
 }
@@ -29,11 +32,17 @@ enum SubCommands {
 fn main() -> anyhow::Result<()> {
     let args = Args::parse();
 
-    match args.subcommand {
-        SubCommands::Init => init::init()?,
-        SubCommands::Check => check::check()?,
-        SubCommands::Generate => generate::generate()?,
+    fn handle_subcommand(subcommand: SubCommands) -> anyhow::Result<()> {
+        match subcommand {
+            SubCommands::Init => init::init()?,
+            SubCommands::Check => check::check()?,
+            SubCommands::Generate => generate::generate()?,
+        }
+
+        Ok(())
     }
+
+    handle_subcommand(args.subcommand)?;
 
     Ok(())
 }
