@@ -1,0 +1,4 @@
+allow-license = ["MIT", "Apache-2.0"]
+
+[license-manual]
+ring = "MIT AND ISC AND OpenSSL"
