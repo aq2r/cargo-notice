@@ -7,7 +7,7 @@ It will check whether libraries other than the specified licenses are included, 
 ## Install
 
 ```sh
-$ cargo install --git https://github.com/aq2r/cargo-notice
+$ cargo install --git https://github.com/aq2r/cargo-notice --locked
 ```
 
 ## How to use
